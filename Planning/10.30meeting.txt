@@ -1,0 +1,31 @@
+Minutes from 10/30
+
+Preston will email Bivash
+Info in email:
+    Download VScode if he hasn't already
+    Configure for Java
+    Download and set up Github
+    Clone repository into local folder
+
+Topic for project:
+    Machine Learning
+        Twitter API usage
+            Republicans vs Democrats
+            Sports Fans- Yankee or Red Sox fan?
+    Video Game
+        Flappybird-No internet game style
+        Cool Math games
+        Are you better than a computer(Beat the algorithm)
+
+Decided on Game where user guesses which team out of two a twitter post is in support of.
+Machine Learning algorithm takes tweets from followers of two different sports team rivals. 
+Then will take one more tweet and guess which team the twitter user is a fan of. The player
+will then guess which team the twitter user is a fan of, and if their hypothesis matches the player
+gets a point. If they don't then the game is over. There will also be a local leaderboard. 
+Think of it as a rendition of the "Higher vs Lower" game.
+
+Roles
+    Machine Learning - Zach
+    Frontend/GUI - James
+    Backend - Preston
+    Extra Help - Bivash
