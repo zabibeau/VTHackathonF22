@@ -24,8 +24,8 @@ import java.util.ArrayList;
         this.names = new ArrayList<String>();
 
         for (int i = 0; i < 5; i++){
-            this.scores.set(i, 0);
-            this.names.set(i, "N/A");
+            this.scores.add(0);
+            this.names.add("N/A");
         }
     }
 

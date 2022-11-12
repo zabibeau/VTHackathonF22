@@ -16,21 +16,26 @@ public class Game {
     private Leaderboard board;
     private String playerName;
 
-    public static void main(String args[]) throws IOException{
+    /**
+     * @param args
+     * @throws IOException
+     */
+    public static void main(String args[]) throws IOException {
         Game test = new Game();
-        test.tweet.toString();
+        test.getNewTweet();
+        System.out.println(test.tweet);
     }
 
     // ~ Default Constructor ...........................................................
     /**
      * New game object.
-     * @throws IOException
      *
      */
-    public Game() throws IOException{
+    public Game() {
         this.currentScore = 0;
         playerName = "";
-        getNewTweet();
+        tweet = new Tweet();
+        board = new Leaderboard();
     }
 
     // ~ Methods ...........................................................
