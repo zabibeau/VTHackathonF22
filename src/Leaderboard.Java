@@ -48,4 +48,15 @@ import java.util.ArrayList;
             this.names.remove(names.size()-1);
         }
     }
- }
+
+    /*
+     * 
+     */
+    public String toString(){
+        String str = "Leaderboard\n";
+        for (int i = 0; i < this.scores.size(); i++){
+            str += (i+1) + ")\t" + this.names.get(i) + ", score: " + this.scores.get(i) + "\n";
+        }
+        return str;
+    }
+ } 
