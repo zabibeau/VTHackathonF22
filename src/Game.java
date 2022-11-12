@@ -16,22 +16,6 @@ public class Game {
     private Leaderboard board;
     private String playerName;
 
-    /**
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String args[]) throws IOException {
-        Game test = new Game();
-        test.getNewTweet();
-        test.addScore();
-        test.board.update(test.currentScore, "Preston");
-        System.out.println(test.tweet);
-        System.out.println(test.board);
-        test.addScore();
-        test.board.update(test.currentScore, "Zach");
-        System.out.println(test.board);
-    }
-
     // ~ Default Constructor ...........................................................
     /**
      * New game object.
