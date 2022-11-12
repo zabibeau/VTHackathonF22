@@ -24,6 +24,8 @@ will then guess which team the twitter user is a fan of, and if their hypothesis
 gets a point. If they don't then the game is over. There will also be a local leaderboard. 
 Think of it as a rendition of the "Higher vs Lower" game.
 
+We can do different difficulties by manipulating the depth of the training data for the ML algorithm.
+
 Roles
     Machine Learning - Zach
     Frontend/GUI - James
