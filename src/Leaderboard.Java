@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 
 /*
@@ -19,13 +20,24 @@ import java.util.ArrayList;
      * sets initial values of the arraylists to 0 and "N/A" representing
      * the score and player name
      */
-    public Leaderboard(){
+    public Leaderboard() throws IOException{
         this.scores = new ArrayList<Integer>();
         this.names = new ArrayList<String>();
 
+        String filePath = "C:\\Users\\17038\\VSCode\\Java\\VTHackathonF22\\src\\Leaderboard.txt";
+
+        FileReader in = new FileReader(new File(filePath));
+
+        BufferedReader buffRead = new BufferedReader(in);  
+        String line;  
+
+        String[] arr;
+
         for (int i = 0; i < 5; i++){
-            this.scores.add(0);
-            this.names.add("N/A");
+            line = buffRead.readLine();
+            arr = line.split(" ");
+            this.scores.add(Integer.valueOf(arr[1]));
+            this.names.add(arr[0]);
         }
     }
 
