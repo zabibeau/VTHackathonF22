@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 
- public class Leaderboard(){
+ public class Leaderboard {
     // ~ Fields.......................................................
     private ArrayList<int> scores;
     private ArrayList<String> names;

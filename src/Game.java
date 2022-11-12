@@ -41,7 +41,7 @@ public class Game {
      * Resets all the variables after the game ends
      */
     public void resetGame(){
-        board.update(this.currentScore);
+        this.board.update(this.currentScore);
         this.currentScore = 0;
         getNewTeams();
     }
