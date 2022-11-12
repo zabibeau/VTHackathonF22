@@ -15,6 +15,7 @@ public class Game {
     private String correctTeam;
     private String incorrectTeam;
     private Leaderboard board;
+    private String playerName;
 
     // ~ Default Constructor ...........................................................
     /**
@@ -23,6 +24,7 @@ public class Game {
      */
     public Game(){
         this.currentScore = 0;
+        playerName = "";
         getNewTweet();
     }
 
@@ -41,7 +43,7 @@ public class Game {
      * Resets all the variables after the game ends
      */
     public void resetGame(){
-        this.board.update(this.currentScore);
+        this.board.update(this.currentScore, playerName);
         this.currentScore = 0;
         getNewTeams();
     }

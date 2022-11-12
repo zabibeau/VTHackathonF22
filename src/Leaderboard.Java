@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
  public class Leaderboard {
     // ~ Fields.......................................................
-    private ArrayList<int> scores;
+    private ArrayList<Integer> scores;
     private ArrayList<String> names;
 
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
      * the score and player name
      */
     public Leaderboard(){
-        this.scores = new ArrayList<int>();
+        this.scores = new ArrayList<Integer>();
         this.names = new ArrayList<String>();
 
         for (int i = 0; i < 5; i++){
@@ -36,16 +36,16 @@ import java.util.ArrayList;
      * updates the leaderboard, which contains the top 5 scores
      */
     public void update(int score, String name){        
-        for (int i = 0; i < this.scores.size; i++)
+        for (int i = 0; i < this.scores.size(); i++)
             if (score > this.scores.get(i)){
                 this.scores.add(i, score);
                 this.names.add(i, name);
                 break;
             }
 
-        while (this.scores.size > 5){
-            this.scores.remove(scores.size-1);
-            this.names.remove(names.size-1);
+        while (this.scores.size() > 5){
+            this.scores.remove(scores.size()-1);
+            this.names.remove(names.size()-1);
         }
     }
  }
