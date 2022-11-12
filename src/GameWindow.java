@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.*;
 /*
  * This class contains the GUI for the project.
@@ -7,10 +9,12 @@ import javax.swing.*;
 
 public class GameWindow {
     
-    private static String teamNameA;
-    private static String teamNameB;
+    static JButton one = new JButton();
+    static JButton two = new JButton();
+    Game reference = new Game();
 
-    public static void newWindow(){
+    public static void newWindow(Game in) throws IOException{
+        in.getNewTweet();
         JFrame window = new JFrame("Rivals");
         window.getContentPane().setLayout(new BorderLayout());
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,15 +36,24 @@ public class GameWindow {
         tweetLabel.setBounds((int)dimension.getWidth()/10, (int)tweetDimension.getHeight(), (int)tweetDimension.getWidth(), (int)tweetDimension.getHeight());;
         tweetLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         tweetLabel.setLineWrap(true);
-        tweetLabel.setText("If you run a QB draw on third-and-7, presumably to set up a manageable fourth-down distance, why take a high-risk shot at the end zone?Mind-boggling. #Hokies");
+        tweetLabel.setText(in.getTweet().getContent());
         tweetLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 
         
         beans.add(tweetLabel);
         
+        int rand = (int)(Math.random() * 100);
+        
+        if (rand >= 50){
+            one.setText(in.getTweet().getRight());
+            two.setText(in.getTweet().getWrong());
+        }
+        else{
+            two.setText(in.getTweet().getRight());
+            one.setText(in.getTweet().getWrong());
+        }
 
-        JButton one = new JButton("Team A for Now");
-        JButton two = new JButton("Team B for Now");
+        
 
         one.setBorderPainted(true);
         two.setBorderPainted(true);
@@ -52,13 +65,13 @@ public class GameWindow {
 
         one.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-            pressed();
+            onePressed();
             }
         });
 
         two.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-             pressed();
+             twoPressed();
             }
         });
         JPanel east = new JPanel( new BorderLayout());
@@ -75,20 +88,34 @@ public class GameWindow {
         window.setVisible(true);
     }
     
-    public static void pressed(){
-        System.out.println("Pressed one bitch");
+    public static void onePressed(){
+        if (one.getText().equals(one))
+    }
+
+    public static void twoPressed(){
+
+    }
+
+    public void update(){
+
     }
 
 
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                newWindow();
+
+            public void run(){
+                try {
+                    newWindow(new Game());
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
     }

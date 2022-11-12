@@ -55,6 +55,19 @@ public class Game {
         this.currentScore += 1;
     }
 
+    public Tweet getTweet(){
+        return this.tweet;
+    }
+
+    public int getScore(){
+        return this.currentScore;
+    }
+
+    public String getPlayerName(){
+        return this.playerName;
+    }
+
+
     /*
      * Resets all the variables after the game ends
      */
@@ -71,7 +84,7 @@ public class Game {
         //int randNum = (int) (Math.random() * 25);
         int randNum = 1;
         String numString = Integer.toString(randNum);
-        String filePath = "C:\\Users\\17038\\VSCode\\Java\\VTHackathonF22\\src\\" 
+        String filePath = "C:\\Users\\James Wallace\\Documents\\JAVA_HOME\\VTHackathonF22\\src\\" 
         + numString + "test\\file.txt";
 
         FileReader in = new FileReader(new File(filePath));
