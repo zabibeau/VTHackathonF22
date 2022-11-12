@@ -60,7 +60,8 @@ public class Game {
         //int randNum = (int) (Math.random() * 25);
         int randNum = 1;
         String numString = Integer.toString(randNum);
-        String filePath = numString + "test/file.txt";
+        String filePath = "C:\\Users\\17038\\VSCode\\Java\\VTHackathonF22\\src\\" 
+        + numString + "test\\file.txt";
 
         FileReader in = new FileReader(new File(filePath));
 
@@ -73,7 +74,7 @@ public class Game {
         for (int i = 0; i < tweetNum-1; i++)
             buffRead.readLine();
         line = buffRead.readLine();
-        in.close();    
+        //in.close();    
 
         String arr[] = line.split(" ");
     
