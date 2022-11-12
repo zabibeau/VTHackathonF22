@@ -23,7 +23,7 @@ public class GameWindow {
         beans.setForeground(Color.BLACK);
         
         
-        JLabel tweetLabel = new JLabel();
+        JTextArea tweetLabel = new JTextArea();
         tweetLabel.setOpaque(true);
         tweetLabel.setBackground(new Color(8, 146, 208));
         Dimension tweetDimension = new Dimension();
@@ -31,6 +31,9 @@ public class GameWindow {
         tweetLabel.setPreferredSize(tweetDimension);
         tweetLabel.setBounds((int)dimension.getWidth()/10, (int)tweetDimension.getHeight(), (int)tweetDimension.getWidth(), (int)tweetDimension.getHeight());;
         tweetLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        tweetLabel.setLineWrap(true);
+        tweetLabel.setText("If you run a QB draw on third-and-7, presumably to set up a manageable fourth-down distance, why take a high-risk shot at the end zone?Mind-boggling. #Hokies");
+        tweetLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 
         
         beans.add(tweetLabel);
@@ -43,17 +46,19 @@ public class GameWindow {
         two.setBorderPainted(true);
         one.setPreferredSize(new Dimension((int)tweetDimension.getWidth()/3, (int)tweetDimension.getHeight()/3*2));
         two.setPreferredSize(new Dimension((int)tweetDimension.getWidth()/3, (int)tweetDimension.getHeight()/3*2));
+        one.setFont(new Font("Arial", Font.PLAIN, 40));
+        two.setFont(new Font("Arial", Font.PLAIN, 40));
         
 
         one.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-            onePressed();
+            pressed();
             }
         });
 
         two.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-             twoPressed();
+             pressed();
             }
         });
         JPanel east = new JPanel( new BorderLayout());
@@ -70,12 +75,8 @@ public class GameWindow {
         window.setVisible(true);
     }
     
-    public static void onePressed(){
+    public static void pressed(){
         System.out.println("Pressed one bitch");
-    }
-
-    public static void twoPressed(){
-        System.out.println("Pressed two bitch");
     }
 
 
