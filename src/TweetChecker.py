@@ -21,8 +21,19 @@ def getDataFrameFromFiles(fileName1, fileName2):
         return data
 
 def createModel(teamFile1, teamFile2):
-    vectorizer = skf.feature_extraction.CountVectorizer()
+    vectorizer = skf.CountVectorizer()
     data = getDataFrameFromFiles(teamFile1, teamFile2)
     counts = vectorizer.fit_transform(data["Tweet"].values)
     targets = data["Team"].values
     classifier = skn.naive_bayes.MultinomialNB()
+    classifier.fit(counts, targets)
+
+    return classifier
+
+
+def testTweets(tweet, file1, file2):
+    classifier = createModel(file1, file2)
+    vectorizer = skf.CountVectorizer()
+    tweetCounts = vectorizer.transform(tweet)
+    prediction = classifier.predict_proba(tweetCounts)
+    print(tweet, prediction)
