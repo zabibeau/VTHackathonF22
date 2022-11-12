@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /*
  * This class contains the structure for the game.
  * @author James Wallace
@@ -13,30 +11,19 @@ import java.util.ArrayList;
 public class Game {
     // ~ Fields.......................................................
     private int currentScore;
-    private int highScore;
     private Tweet tweet;
     private String correctTeam;
     private String incorrectTeam;
+    private Leaderboard board;
 
-    // ~ Constructor ...........................................................
+    // ~ Default Constructor ...........................................................
     /**
      * New game object.
      *
-     * @param score
-     *            Current score of player
-     * @param hScore
-     *            High score of game
-     * @param tweets
-     *            ArrayList of tweets
-     * @param over
-     *            Boolean representing the ending of the game
      */
-    public Game(int score, int hScore, Tweet twee, String right, String wrong){
-        this.currentScore = score;
-        this.highScore = hScore;
-        this.tweet = twee;
-        this.correctTeam = right;
-        this.incorrectTeam = wrong;
+    public Game(){
+        this.currentScore = 0;
+        getNewTweet();
     }
 
     // ~ Methods ...........................................................
@@ -48,14 +35,13 @@ public class Game {
      */
     public void addScore(){
         this.currentScore += 1;
-        if (this.currentScore > this.highScore)
-            this.highScore = this.currentScore;
     }
 
     /*
      * Resets all the variables after the game ends
      */
     public void resetGame(){
+        board.update(this.currentScore);
         this.currentScore = 0;
         getNewTeams();
     }
@@ -72,9 +58,11 @@ public class Game {
      * Gets a new list of tweets to use for the game
      */
     public void getNewTweet(){
-        Tweet newTweet = null;
-        //newTweet = new Tweet(String contentIn, String rightIn, String wrongIn);
+        Tweet newTweet = null; //randomize a new tweet
         this.tweet.setContent(newTweet.getContent());
+        this.tweet.setRight(newTweet.getRight());
+        this.tweet.setWrong(newTweet.getWrong());
     }
+
 }
 
