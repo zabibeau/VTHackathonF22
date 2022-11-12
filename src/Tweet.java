@@ -12,21 +12,16 @@ public class Tweet {
     private String right;
     private String wrong;
 
-    // ~ Constructor...................................................
+    // ~ Default Constructor...................................................
     
     /*
-     * Constructor for the Tweet class.
-     * @param content
-     *      The content of the tweet.
-     * @param right
-     *      The correct answer for the question.
-     * @param wrong
-     *      The incorrect answer for the question.
+     * Default Constructor for the Tweet class.
+     * 
      */
-    public Tweet(String contentIn, String rightIn, String wrongIn){
-        content = contentIn;
-        right = rightIn;
-        wrong = wrongIn;
+    public Tweet(){
+        this.content = "";
+        this.right = "";
+        this.wrong = "";
     }
 
     // ~ Methods...........................................................
