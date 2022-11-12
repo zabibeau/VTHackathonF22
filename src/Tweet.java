@@ -74,4 +74,15 @@ public class Tweet {
         this.wrong = wrongIn;
     }
 
+    /*
+     * toString method
+     */
+    public String toString(){
+        String str = "The content of the tweet is: " + this.content;
+        str += "\nThe correct team is: " + this.right;
+        str += "\nThe incorrect team is: " + this.wrong;
+
+        return str;
+    }
+
 }
