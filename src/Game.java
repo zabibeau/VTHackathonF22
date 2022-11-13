@@ -28,15 +28,7 @@ public class Game {
         tweet = new Tweet();
         board = new Leaderboard();
     }
-        Game game = new Game();
-        System.out.println(game.board);
-        game.addScore();
-        game.board.update(game.getScore(), "Preston");
-        System.out.println(game.board);
-        game.addScore();
-        game.board.update(game.getScore(), "Brad");
-        System.out.println(game.board);
-    }
+    
 
     // ~ Methods ...........................................................
 
