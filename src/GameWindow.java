@@ -15,6 +15,8 @@ public class GameWindow {
     static JButton two = new JButton();
     static Game local = new Game();
     static JFrame localWindow = new JFrame();
+    static JTextArea localTweet = new JTextArea();
+    static JTextArea localScore = new JTextArea();
     
 
     public static void newWindow(Game in) throws IOException{
@@ -57,6 +59,8 @@ public class GameWindow {
         scoreBlock.setText("Score: " + local.getScore());
         scoreBlock.setFont(new Font("Arial", Font.PLAIN, 25));
 
+        localTweet = tweetLabel;
+        localScore = scoreBlock;
         
         beans.add(tweetLabel);
         beans.add(scoreBlock);
@@ -146,38 +150,14 @@ public class GameWindow {
         System.out.println(local.getScore());
         local.getNewTweet();
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        JLayeredPane beans = new JLayeredPane(); 
-        beans.setPreferredSize(dimension);
-        beans.setBackground(new Color(36, 52, 71));
-        beans.setBounds(0, 0, (int)dimension.getWidth(), (int)dimension.getHeight());
-        beans.setForeground(Color.BLACK);
 
-        JTextArea tweetLabel = new JTextArea();
-        tweetLabel.setOpaque(true);
-        tweetLabel.setBackground(new Color(8, 146, 208));
-        Dimension tweetDimension = new Dimension();
-        tweetDimension.setSize(dimension.getWidth()/3*2, dimension.getHeight()/4);
-        tweetLabel.setPreferredSize(tweetDimension);
-        tweetLabel.setBounds((int)dimension.getWidth()/10, (int)tweetDimension.getHeight(), (int)tweetDimension.getWidth(), (int)tweetDimension.getHeight());;
-        tweetLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-        tweetLabel.setLineWrap(true);
-        tweetLabel.setText(local.getTweet().getContent());
-        tweetLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+        localTweet.setText(local.getTweet().getContent());
+        localTweet.setFont(new Font("Arial", Font.PLAIN, 25));
 
-        JTextArea scoreBlock = new JTextArea();
-        scoreBlock.setOpaque(true);
-        scoreBlock.setBackground(new Color(8, 146, 208));
-        Dimension scoreDimension = new Dimension();
-        scoreDimension.setSize(dimension.getWidth()/5, dimension.getHeight()/5);
-        scoreBlock.setPreferredSize(scoreDimension);
-        scoreBlock.setBounds((int)dimension.getWidth()/5*4, 0, (int)scoreDimension.getWidth(), (int)scoreDimension.getHeight());
-        scoreBlock.setBorder(BorderFactory.createLineBorder(Color.black));
-        scoreBlock.setLineWrap(true);
-        scoreBlock.setText("Score: " + local.getScore());
-        scoreBlock.setFont(new Font("Arial", Font.PLAIN, 25));
+        
+        localScore.setText("Score: " + local.getScore());
+        localScore.setFont(new Font("Arial", Font.PLAIN, 25));
 
-        beans.add(tweetLabel);
-        beans.add(scoreBlock);
 
         int rand = (int)(Math.random() * 100);
         if (rand >= 50){
@@ -190,7 +170,8 @@ public class GameWindow {
         }
 
 
-
+        Dimension tweetDimension = new Dimension();
+        tweetDimension.setSize(dimension.getWidth()/3*2, dimension.getHeight()/4);
         one.setBorderPainted(true);
         two.setBorderPainted(true);
         one.setPreferredSize(new Dimension((int)tweetDimension.getWidth()/3, (int)tweetDimension.getHeight()/3*2));
