@@ -3,6 +3,11 @@ from sklearn.naive_bayes import MultinomialNB
 import pandas as pd
 import numpy
 
+
+#This program creates a ML model that will determine which sports team someone is a fan of based off of their
+#tweets
+
+#This function creates a DataFrame from the txt files
 def getDataFrameFromFiles(fileName1, fileName2):
     file1 = open(fileName1, 'r')
     file2 = open(fileName2, 'r')
@@ -24,6 +29,8 @@ def getDataFrameFromFiles(fileName1, fileName2):
         return data
 
 
+
+#Here we use a CountVectorizer and MultinomialNB objects to do most of the heavy lifting
 team1 = "Rivalries/Ohio StateMichigan/MichiganTrainingTweets.txt"
 team2 = "Rivalries/Ohio StateMichigan/Ohio StateTrainingTweets.txt"
 sample = ["i will be camping at louisiana tech this friday ready to compete & get some great work! @scumbie_latech"]

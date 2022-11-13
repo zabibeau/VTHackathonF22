@@ -3,16 +3,17 @@ from cleantext import clean
 import os
 import time
 
-API_KEY = "rMOagNUNK85bd74sYY18yM2nJ"
-API_SECRET = "Psipo3rdVRhVmnLj2DlvFwIyw2EEAtLr1ovk80C57fUeEsT5EX"
-BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAEPbjAEAAAAAi0mn%2Bwou6q2IXXDx2hAT%2BxxkIt4%3D0OyZuxOKjezAbPWhV01yq9cGqMRq8e0t7z33AcLbBLDuOhR0mZ"
-ACCESS_TOKEN = "1574567251994353665-EVXcZI8rgerCDBZAUucRQbE0qQxmTE"
-ACCESS_TOKEN_SECRET = "oLZsrYvbFaxpW9JbP4e31B9LmAHO5zVLWlx39NilcWKZj"
+#These keys and tokens are used to authenticate requests to Twitter's server.
+API_KEY = "Key"
+API_SECRET = "Secret"
+BEARER_TOKEN = "Token"
+ACCESS_TOKEN = "Token"
+ACCESS_TOKEN_SECRET = "Secret"
 
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth, retry_count=10, wait_on_rate_limit=True)
 
-
+#This function will gather 5000 tweets from a specific team to be used to train the ML algorithm.
 def getTrainingTweets(team, page, numTweets):
     handleFile = open(team + "TrainingHandles.txt", 'w')
     tweetFile = open(team + "TrainingTweets.txt", 'w')
@@ -31,7 +32,7 @@ def getTrainingTweets(team, page, numTweets):
                         return numTweets
     return numTweets
 
-
+#This function will get 200 tweets to be used as testing data.
 def getGameTweets(rightTeam, wrongTeam, outputFile, page, numTweets):
     for follower in page:
         try:
@@ -45,6 +46,8 @@ def getGameTweets(rightTeam, wrongTeam, outputFile, page, numTweets):
                 if(numTweets > 5200):
                     return numTweets
     return numTweets
+
+
 #This function gets the tweets used for training the ML algorithm
 #The user inputs two handles and two team names and a directory will be created containing 
 #handles and tweets from followers of both teams.
@@ -82,6 +85,7 @@ def getTweets(handle1, team1, handle2, team2, count):
         else:
             break;
 
+    #Resets the current working directory to the home directory.
     os.chdir("../..")
     print(os.getcwd())
 

@@ -91,7 +91,7 @@ public class Game {
         int randNum = (int) (Math.random() * 4);
         //int randNum = 1;
         String numString = Integer.toString(randNum);
-        String filePath = "C:\\Users\\James Wallace\\Documents\\JAVA_HOME\\VTHackathonF22\\GameTweets\\" 
+        String filePath = "||Insert personal file path here||\\VTHackathonF22\\GameTweets\\" 
         + numString + "\\gameTweets.txt";
 
         FileReader in = new FileReader(new File(filePath));
