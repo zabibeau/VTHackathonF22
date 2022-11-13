@@ -19,13 +19,23 @@ public class Game {
     // ~ Default Constructor ...........................................................
     /**
      * New game object.
+     * @throws IOException
      *
      */
-    public Game() {
+    public Game() throws IOException {
         this.currentScore = 0;
         playerName = "";
         tweet = new Tweet();
         board = new Leaderboard();
+    }
+        Game game = new Game();
+        System.out.println(game.board);
+        game.addScore();
+        game.board.update(game.getScore(), "Preston");
+        System.out.println(game.board);
+        game.addScore();
+        game.board.update(game.getScore(), "Brad");
+        System.out.println(game.board);
     }
 
     // ~ Methods ...........................................................
