@@ -1,39 +1,46 @@
-import sklearn.feature_extraction as skf
-import sklearn.naive_bayes as skn
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
 import pandas as pd
+import numpy
 
 def getDataFrameFromFiles(fileName1, fileName2):
     file1 = open(fileName1, 'r')
     file2 = open(fileName2, 'r')
     index1 = fileName1.find("Training")
+    slash1 = fileName1.rfind("/")
     index2 = fileName2.find("Training")
+    slash2 = fileName2.rfind("/")
     if (index1 != -1 and index2 != -1):
         teams = []
         tweets = []
         for tweet in file1.readlines():
-            teams.append(fileName1[0:index1])
+            teams.append(fileName1[slash1 + 1:index1])
             tweets.append(tweet)
         for tweet in file2.readlines():
-            teams.append(fileName2[0:index2])
+            teams.append(fileName2[slash2 + 1:index2])
             tweets.append(tweet)
-        d = {teams, tweets}
-        data = pd.DataFrame(data=d, columns=["Team", "Tweet"])
+        d = {"Team":teams, "Tweet":tweets}
+        data = pd.DataFrame(data=d)
         return data
 
-def createModel(teamFile1, teamFile2):
-    vectorizer = skf.CountVectorizer()
-    data = getDataFrameFromFiles(teamFile1, teamFile2)
-    counts = vectorizer.fit_transform(data["Tweet"].values)
-    targets = data["Team"].values
-    classifier = skn.naive_bayes.MultinomialNB()
-    classifier.fit(counts, targets)
 
-    return classifier
+team1 = "Rivalries/Ohio StateMichigan/MichiganTrainingTweets.txt"
+team2 = "Rivalries/Ohio StateMichigan/Ohio StateTrainingTweets.txt"
+sample = ["i will be camping at louisiana tech this friday ready to compete & get some great work! @scumbie_latech"]
+vectorizer = CountVectorizer()
+data = getDataFrameFromFiles(team1, team2)
+counts = vectorizer.fit_transform(data["Tweet"].values)
+targets = data["Team"].values
+classifier = MultinomialNB()
+classifier.fit(counts, targets)
+tweetCounts = vectorizer.transform(sample)
+prediction = classifier.predict(tweetCounts)
+predictionChance = classifier.predict_proba(tweetCounts)
+print(sample)
+print(prediction)
+print(predictionChance)
 
 
-def testTweets(tweet, file1, file2):
-    classifier = createModel(file1, file2)
-    vectorizer = skf.CountVectorizer()
-    tweetCounts = vectorizer.transform(tweet)
-    prediction = classifier.predict_proba(tweetCounts)
-    print(tweet, prediction)
+
+
+
