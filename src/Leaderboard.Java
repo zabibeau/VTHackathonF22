@@ -29,7 +29,7 @@ import java.util.ArrayList;
         FileReader in = new FileReader(new File(filePath));
 
         BufferedReader buffRead = new BufferedReader(in);  
-        String line;  
+        String line = "";  
 
         String[] arr;
 
