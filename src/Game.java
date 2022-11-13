@@ -22,11 +22,16 @@ public class Game {
      * @throws IOException
      *
      */
-    public Game() throws IOException {
+    public Game()  {
         this.currentScore = 0;
         playerName = "";
         tweet = new Tweet();
-        board = new Leaderboard();
+        try {
+            board = new Leaderboard();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
 
@@ -51,6 +56,10 @@ public class Game {
 
     public String getPlayerName(){
         return this.playerName;
+    }
+
+    public Leaderboard getLeaderboard(){
+        return this.board;
     }
 
     public void setTweet(Tweet tweet){

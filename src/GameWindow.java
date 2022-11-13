@@ -13,10 +13,12 @@ public class GameWindow {
     static JButton two = new JButton();
     static Game local = new Game();
     static JFrame localWindow = new JFrame();
+    
 
     public static void newWindow(Game in) throws IOException{
         JFrame window = new JFrame("Rivals");
         window = localWindow;
+        local = in;
         window.getContentPane().setLayout(new BorderLayout());
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -41,6 +43,13 @@ public class GameWindow {
         tweetLabel.setText(in.getTweet().getContent());
         tweetLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 
+        JTextArea scoreBlock = new JTextArea();
+        scoreBlock.setOpaque(true);
+        scoreBlock.setBackground(new Color(8, 146, 208));
+        Dimension scoreDimension = new Dimension();
+        scoreDimension.setSize(dimension.getWidth()/5, dimension.getHeight()/5);
+        scoreBlock.setPreferredSize(scoreDimension);
+
         
         beans.add(tweetLabel);
         
@@ -54,11 +63,7 @@ public class GameWindow {
             one.setText(in.getTweet().getWrong());
         }
 
-        
-        local.setScore(in.getScore());
-        local.setPlayerName(in.getPlayerName());
-        local.setTweet(in.getTweet());
-
+        addListeners();
 
         one.setBorderPainted(true);
         two.setBorderPainted(true);
@@ -68,27 +73,7 @@ public class GameWindow {
         two.setFont(new Font("Arial", Font.PLAIN, 40));
         
 
-        one.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent e){
-            try {
-                onePressed();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-            }
-        });
-
-        two.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent e){
-             try {
-                twoPressed();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-            }
-        });
+        
         JPanel east = new JPanel( new BorderLayout());
         JPanel buttons = new JPanel( new GridLayout(1,1));
         east.add(buttons, BorderLayout.EAST);
@@ -101,22 +86,52 @@ public class GameWindow {
         window.setVisible(true);
     }
     
+
+    public static void addListeners(){
+        one.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                try {
+                    onePressed();
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                }
+            });
+    
+        two.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                 try {
+                    twoPressed();
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                }
+            });
+    }
+
     public static void onePressed() throws IOException{
         if (one.getText().equals(local.getTweet().getRight())){
             update();
+            
         }
-        else{
+        else if(one.getText().equals(local.getTweet().getWrong())){
+            System.out.println(local.getLeaderboard());
             localWindow.dispatchEvent(new WindowEvent(localWindow, WindowEvent.WINDOW_CLOSING));
+            
         }
     }
 
     public static void twoPressed() throws IOException{
         if (two.getText().equals(local.getTweet().getRight())){
-            local.addScore();
             update();
+            
         }
-        else{
+        else if(two.getText().equals(local.getTweet().getWrong())){
+            System.out.println(local.getLeaderboard());
             localWindow.dispatchEvent(new WindowEvent(localWindow, WindowEvent.WINDOW_CLOSING));
+            
         }
     }
 
@@ -140,18 +155,21 @@ public class GameWindow {
         tweetLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         tweetLabel.setLineWrap(true);
         tweetLabel.setText(local.getTweet().getContent());
-        System.out.println(local.getTweet().getRight());
         tweetLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 
         int rand = (int)(Math.random() * 100);
         if (rand >= 50){
             one.setText(local.getTweet().getRight());
             two.setText(local.getTweet().getWrong());
+            System.out.println("One" + one.getText());
         }
         else{
             two.setText(local.getTweet().getRight());
             one.setText(local.getTweet().getWrong());
+            System.out.println("Two" + two.getText());
         }
+
+
 
         one.setBorderPainted(true);
         two.setBorderPainted(true);
@@ -161,27 +179,6 @@ public class GameWindow {
         two.setFont(new Font("Arial", Font.PLAIN, 40));
         
 
-        one.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent e){
-            try {
-                onePressed();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-            }
-        });
-
-        two.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent e){
-             try {
-                twoPressed();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-            }
-        });
         JPanel east = new JPanel( new BorderLayout());
         JPanel buttons = new JPanel( new GridLayout(1,1));
         east.add(buttons, BorderLayout.EAST);
@@ -210,6 +207,7 @@ public class GameWindow {
                     e.printStackTrace();
                 }
             }
+
         });
     }
 }
