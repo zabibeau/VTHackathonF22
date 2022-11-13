@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.swing.*;
 /*
  * This class contains the GUI for the project.
+ * @author James Wallace
+ * @version 2022.11.12
  */
 
 public class GameWindow {
@@ -49,9 +51,15 @@ public class GameWindow {
         Dimension scoreDimension = new Dimension();
         scoreDimension.setSize(dimension.getWidth()/5, dimension.getHeight()/5);
         scoreBlock.setPreferredSize(scoreDimension);
+        scoreBlock.setBounds((int)dimension.getWidth()/5*4, 0, (int)scoreDimension.getWidth(), (int)scoreDimension.getHeight());
+        scoreBlock.setBorder(BorderFactory.createLineBorder(Color.black));
+        scoreBlock.setLineWrap(true);
+        scoreBlock.setText("Score: " + local.getScore());
+        scoreBlock.setFont(new Font("Arial", Font.PLAIN, 25));
 
         
         beans.add(tweetLabel);
+        beans.add(scoreBlock);
         
         int rand = (int)(Math.random() * 100);
         if (rand >= 50){
@@ -117,7 +125,6 @@ public class GameWindow {
             
         }
         else if(one.getText().equals(local.getTweet().getWrong())){
-            System.out.println(local.getLeaderboard());
             localWindow.dispatchEvent(new WindowEvent(localWindow, WindowEvent.WINDOW_CLOSING));
             
         }
@@ -129,7 +136,6 @@ public class GameWindow {
             
         }
         else if(two.getText().equals(local.getTweet().getWrong())){
-            System.out.println(local.getLeaderboard());
             localWindow.dispatchEvent(new WindowEvent(localWindow, WindowEvent.WINDOW_CLOSING));
             
         }
@@ -137,6 +143,7 @@ public class GameWindow {
 
     public static void update() throws IOException{
         local.addScore();
+        System.out.println(local.getScore());
         local.getNewTweet();
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         JLayeredPane beans = new JLayeredPane(); 
@@ -157,16 +164,29 @@ public class GameWindow {
         tweetLabel.setText(local.getTweet().getContent());
         tweetLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 
+        JTextArea scoreBlock = new JTextArea();
+        scoreBlock.setOpaque(true);
+        scoreBlock.setBackground(new Color(8, 146, 208));
+        Dimension scoreDimension = new Dimension();
+        scoreDimension.setSize(dimension.getWidth()/5, dimension.getHeight()/5);
+        scoreBlock.setPreferredSize(scoreDimension);
+        scoreBlock.setBounds((int)dimension.getWidth()/5*4, 0, (int)scoreDimension.getWidth(), (int)scoreDimension.getHeight());
+        scoreBlock.setBorder(BorderFactory.createLineBorder(Color.black));
+        scoreBlock.setLineWrap(true);
+        scoreBlock.setText("Score: " + local.getScore());
+        scoreBlock.setFont(new Font("Arial", Font.PLAIN, 25));
+
+        beans.add(tweetLabel);
+        beans.add(scoreBlock);
+
         int rand = (int)(Math.random() * 100);
         if (rand >= 50){
             one.setText(local.getTweet().getRight());
             two.setText(local.getTweet().getWrong());
-            System.out.println("One" + one.getText());
         }
         else{
             two.setText(local.getTweet().getRight());
             one.setText(local.getTweet().getWrong());
-            System.out.println("Two" + two.getText());
         }
 
 
