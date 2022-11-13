@@ -51,6 +51,18 @@ public class Game {
         return this.playerName;
     }
 
+    public void setTweet(Tweet tweet){
+        this.tweet = tweet;
+    }
+
+    public void setScore(int score){
+        this.currentScore = score;
+    }
+
+    public void setPlayerName(String name){
+        this.playerName = name;
+    }
+
 
     /*
      * Resets all the variables after the game ends
