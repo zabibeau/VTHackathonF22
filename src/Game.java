@@ -88,16 +88,16 @@ public class Game {
      * Gets a new list of tweets to use for the game
      */
     public void getNewTweet() throws IOException{
-        //int randNum = (int) (Math.random() * 25);
-        int randNum = 1;
+        int randNum = (int) (Math.random() * 4);
+        //int randNum = 1;
         String numString = Integer.toString(randNum);
-        String filePath = "C:\\Users\\James Wallace\\Documents\\JAVA_HOME\\VTHackathonF22\\src\\" 
-        + numString + "test\\file.txt";
+        String filePath = "C:\\Users\\James Wallace\\Documents\\JAVA_HOME\\VTHackathonF22\\GameTweets\\" 
+        + numString + "\\gameTweets.txt";
 
         FileReader in = new FileReader(new File(filePath));
 
-        //int tweetNum = (int) (Math.random() * 200);
-        int tweetNum = 0;
+        int tweetNum = (int) (Math.random() * 400);
+        //int tweetNum = 0;
 
         BufferedReader buffRead = new BufferedReader(in);  
         String line;  
@@ -105,7 +105,7 @@ public class Game {
         for (int i = 0; i < tweetNum-1; i++)
             buffRead.readLine();
         line = buffRead.readLine();
-        //in.close();    
+        in.close();    
 
         String arr[] = line.split(" ");
     

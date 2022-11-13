@@ -24,7 +24,7 @@ import java.util.ArrayList;
         this.scores = new ArrayList<Integer>();
         this.names = new ArrayList<String>();
 
-        String filePath = "C:\\Users\\17038\\VSCode\\Java\\VTHackathonF22\\src\\Leaderboard.txt";
+        String filePath = "VTHackathonF22\\src\\Leaderboard.txt";
 
         FileReader in = new FileReader(new File(filePath));
 
